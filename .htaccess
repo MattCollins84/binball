@@ -1,0 +1,24 @@
+RewriteEngine On
+RewriteBase /
+
+Options -Indexes
+
+# Catch old school URL's
+RewriteRule ^login.php$ /login [R=301,QSA,L]
+RewriteRule ^reset.php$ /reset [R=301,QSA,L]
+
+# Redirect to controllers
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule .* /index.php [L,QSA]
+
+# Compression is on for everything but images
+# <IfModule mod_deflate.c>
+#     SetOutputFilter DEFLATE
+#     # file-types indicated will not be compressed
+#     SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png|rar|zip|pdf)$ no-gzip dont-vary
+#     <IfModule mod_headers.c>
+#         Header append Vary User-Agent
+#     </IfModule>
+# </IfModule>
+

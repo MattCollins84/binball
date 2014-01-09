@@ -1,0 +1,22 @@
+{
+  "controllers": [
+    {
+        "regex": "^/$",
+        "controllerClass": "MainController",
+        "method": "renderHomepage",
+        "authentication": false 
+    },
+    {
+        "regex": "^/auth/facebook$",
+        "controllerClass": "SocialAuthenticationController",
+        "method": "authFacebook",
+        "authentication": false 
+    },
+    {
+        "regex": "^/news/[a-zA-Z0-9]+$",
+        "controllerClass": "NewsController",
+        "method": "renderQuiz",
+        "authentication": true 
+    }
+  ]
+}

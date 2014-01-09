@@ -1,0 +1,62 @@
+.hidden {
+  display: none!important;
+}
+
+.mb10 {
+  margin-bottom: 10px;
+}
+
+.mb20 {
+  margin-bottom: 20px!important;
+}
+
+.mt20 {
+  margin-top: 20px;
+}
+
+.mb0 {
+  margin-bottom: 0;
+}
+
+.mt0 {
+  margin-top: 0;
+}
+
+.ml20 {
+  margin-left: 20px!important;
+}
+
+.ml0 {
+  margin-left: 0px!important;
+}
+
+.pad0 {
+  padding: 0!important;
+}
+
+.br0 {
+  border-radius: 0px;
+}
+
+.fa-8x {
+  font-size: 8em;
+}
+
+.jt-small {
+  padding: 0;
+}
+
+.user-icon {
+  border: 1px solid grey;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+.user-icon.host {
+  color: red;
+}
+
+h1.popular {
+ font-size: 24px;
+}
