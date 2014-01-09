@@ -7,16 +7,16 @@
         "authentication": false 
     },
     {
+        "regex": "^/rules$",
+        "controllerClass": "MainController",
+        "method": "renderRules",
+        "authentication": false 
+    },
+    {
         "regex": "^/auth/facebook$",
         "controllerClass": "SocialAuthenticationController",
         "method": "authFacebook",
         "authentication": false 
-    },
-    {
-        "regex": "^/news/[a-zA-Z0-9]+$",
-        "controllerClass": "NewsController",
-        "method": "renderQuiz",
-        "authentication": true 
     }
   ]
 }

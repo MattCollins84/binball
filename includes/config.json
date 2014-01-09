@@ -1,7 +1,7 @@
 {
   "config": [
     {
-      "hostnames": ["dev.binball.com"],
+      "hostnames": ["dev.binball.net"],
       "in_production": false,
       "mysql": {
         "host": "localhost",

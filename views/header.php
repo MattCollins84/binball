@@ -26,7 +26,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>QuizQlock</title>
+    <title>BinBall</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.css" rel="stylesheet">
@@ -44,11 +44,7 @@
     <![endif]-->
 
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="/js/news.js"></script>
-
-    <? if (isset($data['insto']) && $data['insto']): ?>
-      <script type="text/javascript" src="https://api.insto.co.uk:3000/lib/client.js"></script>
-    <? endif; ?>
+    <script src="/js/binball.js"></script>
     
   </head>
 
@@ -63,7 +59,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">NewsTrendr</a>
+          <a class="navbar-brand" href="/">BinBall</a>
         </div>
         
         <form class="navbar-form navbar-right">
@@ -73,11 +69,12 @@
           <? else: ?>
             <a href="/auth/facebook" class="btn btn-primary"><i class="fa fa-facebook-square fa-lg"></i>&nbsp;&nbsp;Connect with Facebook</a>
           <? endif; ?>
+            <a class="btn btn-success"><i class="fa fa-play-circle"></i> Play BinBall</a>
         </form>
         
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="#">Help</a></li>
+            <li><a href="/rules">Rules</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

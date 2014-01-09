@@ -10,6 +10,10 @@
   margin-bottom: 20px!important;
 }
 
+.mb60 {
+  margin-bottom: 60px!important;
+}
+
 .mt20 {
   margin-top: 20px;
 }
@@ -43,20 +47,38 @@
 }
 
 .jt-small {
-  padding: 0;
+  padding-bottom: 24px;
 }
 
-.user-icon {
-  border: 1px solid grey;
-  padding: 10px;
-  margin-bottom: 20px;
-  border-radius: 5px;
+.headline {
+  font-size: 50px;
+  color: #5A5A5A;
 }
 
-.user-icon.host {
-  color: red;
+.headline span {
+  color: #999;
 }
 
-h1.popular {
- font-size: 24px;
+.feature {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 40px;
+  margin-top: 40px;
+}
+
+.list-group .header {
+  background: #428bca;
+  color: #FFF;
+}
+
+.list-group .header a {
+  background: #428bca;
+  color: #FFF;
+}
+
+ul.rules-list {
+  font-weight: bold;
+}
+
+ul.rules-list li {
+  margin-left: 20px!important;
 }

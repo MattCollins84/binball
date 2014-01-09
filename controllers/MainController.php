@@ -15,14 +15,25 @@
     // Render the basic-details.html layout
     static public function renderHomepage($rest) {
       
-			$data = array();
-      $data['insto'] = true;
+      $data = array();
       $data['jumbotron'] = true;
       
-			$h = $rest->getHierarchy();    
+      $h = $rest->getHierarchy();    
       $vars = $rest->getRequestVars();
 
       echo View::renderView("homepage", $data);
+          
+    }
+
+    // Render the basic-details.html layout
+    static public function renderRules($rest) {
+      
+      $data = array();
+      
+      $h = $rest->getHierarchy();    
+      $vars = $rest->getRequestVars();
+
+      echo View::renderView("rules", $data);
           
     }
 
