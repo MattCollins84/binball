@@ -67,9 +67,9 @@
             <a href="#" class="btn btn-success"><i class="fa fa-user fa-lg"> </i> <?=$data['user']->getName();?></a>
             <a href="/sign-out" class="btn btn-info"><i class="fa fa-sign-out fa-lg"></i></a>
           <? else: ?>
-            <a href="/auth/facebook" class="btn btn-primary"><i class="fa fa-facebook-square fa-lg"></i>&nbsp;&nbsp;Connect with Facebook</a>
+            <!-- <a href="/auth/facebook" class="btn btn-primary"><i class="fa fa-facebook-square fa-lg"></i>&nbsp;&nbsp;Connect with Facebook</a> -->
           <? endif; ?>
-            <a class="btn btn-success"><i class="fa fa-play-circle"></i> Play BinBall</a>
+            <a class="btn btn-success" href="/binball/play"><i class="fa fa-play-circle"></i> Play BinBall</a>
         </form>
         
         <div class="collapse navbar-collapse">

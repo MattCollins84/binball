@@ -42,6 +42,14 @@
   border-radius: 0px;
 }
 
+.text-center {
+  text-align: center;
+}
+
+.bold {
+  font-weight: bold;
+}
+
 .fa-8x {
   font-size: 8em;
 }
@@ -81,4 +89,12 @@ ul.rules-list {
 
 ul.rules-list li {
   margin-left: 20px!important;
+}
+
+table#scores-table th {
+  height: 81px;
+}
+
+img[id^=joker] {
+  cursor: pointer;
 }

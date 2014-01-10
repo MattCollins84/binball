@@ -12,7 +12,7 @@
   Class MainController extends Controller {
 
 
-    // Render the basic-details.html layout
+    // Render the homepage
     static public function renderHomepage($rest) {
       
       $data = array();
@@ -25,7 +25,7 @@
           
     }
 
-    // Render the basic-details.html layout
+    // Render the rules
     static public function renderRules($rest) {
       
       $data = array();
@@ -34,6 +34,18 @@
       $vars = $rest->getRequestVars();
 
       echo View::renderView("rules", $data);
+          
+    }
+
+    // Render the scorecard
+    static public function renderScorecard($rest) {
+      
+      $data = array();
+      
+      $h = $rest->getHierarchy();    
+      $vars = $rest->getRequestVars();
+
+      echo View::renderView("scorecard", $data);
           
     }
 

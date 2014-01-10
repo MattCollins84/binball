@@ -13,6 +13,12 @@
         "authentication": false 
     },
     {
+        "regex": "^/binball/[0-9a-zA-Z]+$",
+        "controllerClass": "MainController",
+        "method": "renderScorecard",
+        "authentication": false 
+    },
+    {
         "regex": "^/auth/facebook$",
         "controllerClass": "SocialAuthenticationController",
         "method": "authFacebook",
