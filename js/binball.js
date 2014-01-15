@@ -1,8 +1,9 @@
 var BinBall = function() {
 
-  this.players = ["Matt", "dave", "Glynn", "Simon", "Dan"];
-  this.jokers = [false, false, false, false, false];
-  this.scores = [[], [], [], [], []];
+  this.players = []; //["Matt", "dave", "Glynn", "Simon", "Dan"];
+  this.jokers = [] //[false, false, false, false, false];
+  this.scores = [] //[[], [], [], [], []];
+  this.attempts = [] //[[], [], [], [], []];
   this.leaderboard = [];
 
   var parent = this;
@@ -114,6 +115,7 @@ var BinBall = function() {
     this.players.push(name);
     this.jokers.push(false);
     this.scores.push([]);
+    this.attempts.push([]);
     $('#player-name').val("");
     $('#player-list').text(this.players.join(", "));
 
@@ -232,6 +234,22 @@ var BinBall = function() {
 
     row.appendTo(table);
 
+    // avg row
+    var row = $("<tr/>", {id: "avg-row"});
+    $("<td/>", {"text": "Attempt Avg.", class: "bold"}).appendTo(row);
+
+    for (var p in this.players) {
+      
+      var span = $("<span />", {id: "avg-"+p, text: "0"});
+
+      var totalCell = $("<td/>", {html: span, class: "bold"});
+      
+      totalCell.appendTo(row);
+
+    }
+
+    row.appendTo(table);
+
     table.appendTo("#scorecard");
 
     $('select.score-input').change(function(e){
@@ -268,6 +286,8 @@ var BinBall = function() {
     player_id = bits[bits.length-1];
     var round_id = parseInt(bits[bits.length-2], 10);
 
+    var attempt = ((round_id - score) + 1);
+
     var r = (round_id-3);
 
     if (typeof score != "number") {
@@ -276,6 +296,7 @@ var BinBall = function() {
 
     if (typeof this.scores[player_id][r] == "undefined" && this.scores[player_id].length == r) {
       this.scores[player_id].push(score);
+      this.attempts[player_id].push(attempt);
     }
 
     else if (typeof this.scores[player_id][r] == "undefined" && this.scores[player_id].length < r) {
@@ -286,6 +307,7 @@ var BinBall = function() {
 
     else {
       this.scores[player_id][r] = score;
+      this.attempts[player_id][r] = attempt;
     }
     
 
@@ -305,6 +327,21 @@ var BinBall = function() {
     }
     
     $('#total-'+player_id).text(newScore);
+
+    // average attempts
+    var l = this.attempts[player_id].length;
+    var total_attempts = 0;
+    for (var a in this.attempts[player_id]) {
+      if (typeof this.attempts[player_id][a] != "number") {
+        this.attempts[player_id][a] = parseInt(this.attempts[player_id][a]);
+      }
+
+      total_attempts += this.attempts[player_id][a];
+    }
+
+    var avg = (total_attempts / l).toFixed(3);
+
+    $('#avg-'+player_id).text(avg);
 
     // have we finished this line?
     var nextRound = true;
