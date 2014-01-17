@@ -3,15 +3,9 @@
     {
       "hostnames": ["dev.binball.net"],
       "in_production": false,
-      "mysql": {
-        "host": "localhost",
-        "name": "quizr",
-        "username": "root",
-        "password": "sqldbmine"
-      },
       "facebook": {
-      	"app_id": "368919846577393",
-      	"app_secret": "f90216fece23cd284bdc72167ffe1038",
+      	"app_id": "497742040344329",
+      	"app_secret": "d9782a846eb734fc9c15e8f551e2077b",
       	"return_url": "/auth/facebook"      	
       }
     }

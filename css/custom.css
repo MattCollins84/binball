@@ -98,3 +98,11 @@ table#scores-table th {
 img[id^=joker] {
   cursor: pointer;
 }
+
+.stats span {
+  font-size: 25px;
+}
+
+.footer {
+  background: #46477d;
+}

@@ -36,6 +36,8 @@
         } else {
           include("views/footer.php");
         }
+      } else {
+        include("views/".$view.".php");
       }
       $view = ob_get_clean();
       //return

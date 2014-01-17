@@ -8,8 +8,8 @@
   require_once("includes/config.php");
   require_once("controllers/Controller.php");
   require_once("includes/User.php");
-  //require_once("includes/SEOTools.php");
-  //require_once("includes/Wolf.php");
+  require_once("includes/Player.php");
+  require_once("includes/Cloudant.php");
   require_once("includes/CIFacebook.php");
 
   
@@ -66,24 +66,26 @@
       // get user_details and put them in a format we understand
       $u = $fb->getMe();
       
-      $user = User::getBySocialMediaId($u['id'], "facebook");
-      
-      $user->setName($u['first_name']);
-      $user->setSurname($u['last_name']);
-      $user->setEmail($u['email']);
-      $user->setUserType("user");
-      $user->setSocialNetwork("facebook");
-      $user->setSocialMediaId($u['id']);
-      $user->setName($u['first_name']);
-      $user->setActive(true);
-      
-      if(!$user->getUserId()) {
-      	$user->markNew();
-      }
-      
-      $user->save();
+      $user = array();
+      $user['name'] = $u['first_name'];
+      $user['surname'] = $u['last_name'];
+      $user['email'] = $u['email'];
+      $user['type'] = 'user';
+      $user['social_network'] = 'facebook';
+      $user['social_id'] = $u['id'];
+      $user['email'] = $u['email'];
 
-      $_SESSION['user'] = serialize($user);
+      $res = User::createUser($user, "facebook", $u['id']);
+
+      $user['_id'] = ($res['id']?$res['id']:$res['_id']);
+      
+      $player = array();
+      $player['email'] = $u['email'];
+      $player['name'] = $u['first_name']." ".$u['last_name'];
+      $player['created_by'] = $user['_id'];
+      $res = Player::createPlayer($player);
+
+      $_SESSION['user'] = $user;
 
       header("Location: /");
       exit;

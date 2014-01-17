@@ -3,6 +3,7 @@
   <div class="row">
     
     <div class="col-md-12">
+      <img src="/images/nbba-xsmall.png" class="pull-right" />
       <h1>OFFICIAL Rules &amp; Regulations for BinBall</h1>
       <p>These are the OFFICIAL Rules &amp; Regulations for BinBall, however players are encouraged to adapt these rules to suit their environment.</p>
     </div>
@@ -17,6 +18,7 @@
         <li class="list-group-item header"><a href='#rules1'>1. EQUIPMENT<a/></li>
         <li class="list-group-item"><a href='#rules1.1'>1.1. Bin</a></li>
         <li class="list-group-item"><a href='#rules1.2'>1.2. Ball</a></li>
+        <li class="list-group-item"><a href='#rules1.3'>1.3. Measures</a></li>
         <li class="list-group-item header"><a href='#rules2'>2. PLAYING BINBALL<a/></li>
         <li class="list-group-item"><a href='#rules2.1'>2.1. Player position</a></li>
         <li class="list-group-item"><a href='#rules2.2'>2.2. Throwing the ball</a></li>
@@ -52,6 +54,14 @@
       </ul>
       <hr class="mb20 mt20" />
       
+      <a name="rules1.3"></a>
+      <h2>1.3. Measures</h2>
+      <p>Although a measure is not a physical piece of equipment it is important to understand what a measure is and how it is applied to BinBall.</p>
+      <p>A measure is a fixed distance, determined pre-game, that is used to mark out the distances the players will throw from.</p>
+      <p>A measure is typically 18" in length, however it is suggested that measure sizes be adapted to suit the playing environment (i.e. the length of a floor tile) for ease and consistency</p>
+
+      <hr class="mb20 mt20" />
+      
       <a name="rules2"></a>
       <h1>2. PLAYING BINBALL</h1>
       <p>Everything you need to know to get started with BinBall.</p>
@@ -60,6 +70,7 @@
       <a name="rules2.1"></a>
       <h2>2.1. Player positioning</h2>
       <p>For the first throw, the player must be stood a minimum of three measures from the front of the bin.</p>
+      <p>After each round, the players will move back one additional measure up to the maximum number of measures (agreed pre-game).</p>
 
       <ul class="rules-list alert alert-info">
         <li>A measure is typically 18" in length (or, the length of one floor tile)</li>
@@ -82,6 +93,7 @@
       <p>The current player gets a number of attempts to get the ball into the bin. This number is the current number of measures from the bin.</p>
       <p>If the player is successful in getting the ball into the bin, he/she will receive some points. The number of points awarded is equal to the number of measures away from the bin, minus the number of failed attempts.</p>
       <p>The ball must stay in the bin to be classed as a successful throw. If the ball bounces out is is classed as a failed attempt and no points are awarded.</p>
+      <p>If the ball ends up in the bin after bouncing off a surface other than the floor (e.g. a wall, or a nearby desk), this is classed as a <b>valid</b> throw and the usual points are awarded.</p>
       <p>A player can nominate the current throw as a <b>Joker</b>. If a nominated throw is successful, then the player will receive double the amount of points for that throw. A player only has 1 Joker to use through the whole game.</p>
       
 

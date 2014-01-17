@@ -1,10 +1,15 @@
 var BinBall = function() {
 
   this.players = []; //["Matt", "dave", "Glynn", "Simon", "Dan"];
+  this.emails = []; //["Matt", "dave", "Glynn", "Simon", "Dan"];
   this.jokers = [] //[false, false, false, false, false];
   this.scores = [] //[[], [], [], [], []];
+  this.maxScores = [];
   this.attempts = [] //[[], [], [], [], []];
   this.leaderboard = [];
+  this.currentPlayer = 0;
+  this.currentRound = 3;
+  this.totalRounds = 0;
 
   var parent = this;
 
@@ -44,6 +49,10 @@ var BinBall = function() {
       // has the joker been played?
       var joker = (this.jokers[p] === false?"no":"yes");
 
+      var max = this.calculateMaximum((3 + scores.length), this.totalRounds, (this.jokers[p] === false?true:false)) + total;
+      this.maxScores[p] = max;
+
+
       // generate key in this format '<score>-<jokerplayed>-<name>'
 
       var prefix = "0";
@@ -68,7 +77,7 @@ var BinBall = function() {
 
       }
 
-      var key = prefix+total.toString()+"-"+this.players[p].toLowerCase().replace(/[^a-zA-Z0-9]/g, "")+"-"+joker;
+      var key = prefix+total.toString()+"-"+this.players[p].toLowerCase().replace(/[^a-zA-Z0-9]/g, "")+"-"+joker+"-"+max;
 
       temp[key] = this.players[p];
 
@@ -93,7 +102,7 @@ var BinBall = function() {
       if (theScore == "") {
         theScore = 0;
       }
-      var score = $("<td />", {text: theScore});
+      var score = $("<td />", {text: theScore+"/"+keys[k].split("-")[3]});
       score.appendTo(row);
 
       row.appendTo(table);
@@ -107,25 +116,111 @@ var BinBall = function() {
   this.addPlayer = function() {
 
     var name = $('#player-name').val();
+    var email = $('#player-email').val();
 
     if (!name) {
       return alert("You must enter a name");
     }
 
+    if (!email) {
+      return alert("You must enter an email");
+    }
+
+    $.ajax({
+      type: "GET",
+      url: "/create/player",
+      data: { name: name, email: email }
+    })
+    .done(function( msg ) {
+      
+      parent.players.push(name);
+      parent.emails.push(email);
+      parent.jokers.push(false);
+      parent.scores.push([]);
+      parent.maxScores.push(0);
+      parent.attempts.push([]);
+      $('#player-name').val("");
+      $('#player-email').val("");
+
+      parent.renderPlayerList();
+
+    });
+
+  }
+
+  // add a suggested player to the list
+  this.addSuggestedPlayer = function(name, email) {
+    
+    $('a[data-email="'+email+'"]').remove();
+
     this.players.push(name);
+    this.emails.push(email);
     this.jokers.push(false);
     this.scores.push([]);
+    this.maxScores.push(0);
     this.attempts.push([]);
-    $('#player-name').val("");
-    $('#player-list').text(this.players.join(", "));
+    
+    this.renderPlayerList();
+
+  }
+
+  this.renderPlayerList = function() {
+
+    $('#player-list').text("");
+
+    for (var p in this.players) {
+      var p = $("<p />", {"text": this.players[p]});
+      p.appendTo('#player-list');
+    }
+
+  }
+
+  // calculate maximum remaining score
+  this.calculateMaximum = function(start, end, joker) {
+
+    // calculate the initial maximum score
+    var max = 0;
+    for (var t = start; t < (end + 3); t++) {
+      max += t;
+    }
+
+    // add again for joker
+    if (joker) {
+      max += (t - 1);
+    }
+
+    return max;
 
   }
 
   // start the game!
   this.start = function() {
 
-    $(".player-entry").addClass("hidden");
-    this.renderScorecard();
+    if (!this.players.length) {
+      return alert("You don't have any players, dummy!");
+    }
+
+    var totalRounds = parseInt($('#number-of-rounds').val(), 10);
+    this.totalRounds = totalRounds;
+
+    var max = this.calculateMaximum(3, totalRounds, true);
+
+    for (var m in this.maxScores) {
+      this.maxScores[m] = max;
+    }
+
+    $.ajax({
+      type: "GET",
+      url: "/stats",
+      data: { min_round: 3, max_round: (parseInt(totalRounds, 10) + 2), emails: parent.emails }
+    })
+    .done(function( html ) {
+      
+      $(".player-entry").addClass("hidden");
+      $('#stats').html(html);
+      parent.renderScorecard();
+
+    });
 
   }
 
@@ -141,7 +236,8 @@ var BinBall = function() {
     $("<th/>", {"text": ""}).appendTo(headingsRow);
     for (var p in this.players) {
       var playerHeading = $("<th/>", {"text": this.players[p]});
-      var joker = $("<img/>", {"id": "joker-"+p, class: "pull-left", src: "/images/joker.png"});
+      var joker = $("<button />", {"id": "joker-"+p, class: "pull-right btn btn-danger", text: "JF", "data-toggle": "tooltip", "title": "Joker Failed" });
+      joker.tooltip({placement: "left"});
       joker.prependTo(playerHeading);
       (function(player_id){
         joker.bind('click', function() {
@@ -200,8 +296,8 @@ var BinBall = function() {
         var playerCell = $("<td/>", {"html": scoreInput, id: ident});
 
         // joker icon
-        var jokerIcon = $("<button />", {value: 0, text: "J", class: "btn btn-sm btn-warning pull-right btn-joker-"+p, id: "joker-"+ident});
-        
+        var jokerIcon = $("<button />", {value: 0, text: "J", class: "btn btn-sm btn-warning pull-right btn-joker-"+p, id: "joker-"+ident, "data-toggle": "tooltip", "title": "Player Joker"});
+        jokerIcon.tooltip({placement: "left"});
         (function(i) {
           jokerIcon.bind("click", function() {
             parent.playJoker(i);
@@ -256,6 +352,24 @@ var BinBall = function() {
       parent.addScore(this.id.replace("score", ""), this.value);
     });
 
+    this.showStats();
+
+  }
+
+  this.showStats = function() {
+
+    // hide all stats
+    $('.stats').addClass("hidden");
+
+    // make round average visible
+    $('#round-avg-'+this.currentRound).removeClass("hidden");
+
+    // make round joker %
+    $('#joker-pc-'+this.currentRound).removeClass("hidden");
+
+    // make player round average visible
+    $('#round-'+this.currentRound+'-player-'+this.currentPlayer+'-avg').removeClass("hidden");
+
   }
 
   // play a joker
@@ -270,7 +384,7 @@ var BinBall = function() {
 
     $('.btn-joker-'+player_id).addClass('hidden');
     $('#joker-r'+round_id+"p"+player_id).removeClass('hidden');
-    $('img#joker-'+player_id).addClass('hidden');
+    $('button#joker-'+player_id).addClass('hidden');
 
     this.jokers[player_id] = parseInt((round_id-3), 10);
 
@@ -312,14 +426,18 @@ var BinBall = function() {
     
 
     var newScore = 0;
+    var hitJoker = false;
     for (var s in this.scores[player_id]) {
 
+      hitJoker = false;
+      
       s = parseInt(s, 10);
 
       var multiplier = 1;
 
       if (this.jokers[player_id] !== false && this.jokers[player_id] == s) {
         multiplier = 2;
+        hitJoker = true;
       }
 
       newScore += (this.scores[player_id][s] * multiplier);
@@ -357,14 +475,34 @@ var BinBall = function() {
       $('#round-'+(round_id+1)).addClass('success');
     }
 
-    parent.generateLeaderboard();
+    $.ajax({
+      type: "GET",
+      url: "/add/score",
+      data: { game_id: $('#game_id').val(), email: this.emails[player_id], attempt: attempt, hit_joker: hitJoker, round: round_id }
+    })
+    .done(function( msg ) {
+      
+      parent.generateLeaderboard();
+
+    });
+
+    // determine what is the next player
+    if (player_id == (this.players.length-1)) {
+      this.currentPlayer = 0;
+      this.currentRound++;
+    } else {
+      this.currentPlayer++;
+    }
+
+    this.showStats();
 
   }
 
   this.jokerMiss = function(player_id) {
     $('.btn-joker-'+player_id).addClass('hidden');
-    $('img#joker-'+player_id).addClass('hidden');
+    $('button#joker-'+player_id).addClass('hidden');
     this.jokers[player_id] = 9999;
+    this.generateLeaderboard();
   }
 
 }

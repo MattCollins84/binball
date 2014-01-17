@@ -5,7 +5,9 @@
    */
   
   require_once("includes/Rest.php");
-  require_once("includes/Insto.php");
+  require_once("includes/Cloudant.php");
+  require_once("includes/User.php");
+  require_once("includes/Player.php");
   require_once("controllers/Controller.php");
 
   
@@ -37,15 +39,15 @@
           
     }
 
-    // Render the scorecard
-    static public function renderScorecard($rest) {
+    // Render the rules
+    static public function renderGuide($rest) {
       
       $data = array();
       
       $h = $rest->getHierarchy();    
       $vars = $rest->getRequestVars();
 
-      echo View::renderView("scorecard", $data);
+      echo View::renderView("guide", $data);
           
     }
 
