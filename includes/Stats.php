@@ -6,6 +6,8 @@ class Stats  {
 
   // get round averages
   static public function roundAverage($min, $max) {
+    
+    $max++;
 
     $params = array("startkey" => (int) $min, "endkey" => (int) $max, "reduce" => "true", "group_level" => 999);
 
@@ -30,6 +32,8 @@ class Stats  {
   static public function userRoundAverage($emails, $min, $max) {
 
     $ret = array();
+
+    $max++;
 
     foreach ($emails as $k => $email) {
 
