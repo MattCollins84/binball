@@ -55,6 +55,12 @@
         "authentication": false 
     },
     {
+        "regex": "^/miss/joker$",
+        "controllerClass": "BinBallController",
+        "method": "missJoker",
+        "authentication": false 
+    },
+    {
         "regex": "^/stats$",
         "controllerClass": "StatsController",
         "method": "getStats",

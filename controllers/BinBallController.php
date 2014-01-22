@@ -105,10 +105,25 @@
 
       $score['round'] = $vars['round'];
       $score['hit_joker'] = ($vars['hit_joker']=="true"?true:false);
+      $score['played_joker'] = $score['hit_joker'];
       $score['game_id'] = $vars['game_id'];
 
       Score::addScore($score);
           
+    }
+
+    // miss joker
+    static public function missJoker($rest) {
+
+      $data = array();
+      
+      $h = $rest->getHierarchy();    
+      $vars = $rest->getRequestVars();
+
+      $data['user'] = User::getActiveUser();
+
+      Score::missJoker($vars['email'], $vars['game_id'], $vars['round']);
+
     }
 
   }

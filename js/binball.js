@@ -499,10 +499,20 @@ var BinBall = function() {
   }
 
   this.jokerMiss = function(player_id) {
-    $('.btn-joker-'+player_id).addClass('hidden');
-    $('button#joker-'+player_id).addClass('hidden');
-    this.jokers[player_id] = 9999;
-    this.generateLeaderboard();
+
+    $.ajax({
+      type: "GET",
+      url: "/miss/joker",
+      data: { game_id: $('#game_id').val(), email: this.emails[player_id], round: this.currentRound }
+    })
+    .done(function( msg ) {
+      
+      $('.btn-joker-'+player_id).addClass('hidden');
+      $('button#joker-'+player_id).addClass('hidden');
+      parent.jokers[player_id] = 9999;
+      parent.generateLeaderboard();
+
+    });
   }
 
 }

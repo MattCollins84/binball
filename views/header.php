@@ -64,7 +64,12 @@
         </div>
         
         <form class="navbar-form navbar-right">
-          <a class="btn btn-success" href="/binball/play"><i class="fa fa-play-circle"></i> Play BinBall</a>
+          <?
+          if ($data['game_id']) {
+            $confirm = "onclick=\"return confirm('This will end your current game, do you want to continue?');\"";;
+          }
+          ?>
+          <a class="btn btn-success" href="/binball/play" <?=$confirm;?>><i class="fa fa-play-circle"></i> Play BinBall</a>
           <? if ($data['user']): ?>
             <a href="#" class="btn btn-success"><i class="fa fa-user fa-lg"> </i> <?=$data['user']['name'];?></a>
             <a href="/sign-out" class="btn btn-info"><i class="fa fa-sign-out fa-lg"></i></a>

@@ -6,7 +6,7 @@ class Stats  {
 
   // get round averages
   static public function roundAverage($min, $max) {
-    
+
     $max++;
 
     $params = array("startkey" => (int) $min, "endkey" => (int) $max, "reduce" => "true", "group_level" => 999);
@@ -64,6 +64,35 @@ class Stats  {
 
     $params = array("reduce" => "true", "group_level" => 999);
     $res = Cloudant::doCurl("GET", "scores/_design/stats/_view/jokers_hit", array(), $params);
+
+    if (is_array($res['rows']) && count($res['rows'])) {
+
+      $total = 0;
+
+      foreach ($res['rows'] as $round) {
+
+        $total += $round['value'];
+
+      }
+
+      foreach ($res['rows'] as $round) {
+
+        $ret[$round['key']] = round((($round['value'] / $total) * 100), 0);
+
+      }
+
+    }
+
+    return $ret;
+
+  }
+
+  static public function jokersMiss() {
+
+    $ret = array();
+
+    $params = array("reduce" => "true", "group_level" => 999);
+    $res = Cloudant::doCurl("GET", "scores/_design/stats/_view/jokers_miss", array(), $params);
 
     if (is_array($res['rows']) && count($res['rows'])) {
 
