@@ -25,13 +25,80 @@
       $h = $rest->getHierarchy();
       $vars = $rest->getRequestVars();
 
+      $maxrounds = 99;
+
       //$data['user'] = User::getActiveUser();
 
       $data['round_average'] = Stats::roundAverage($vars['min_round'], $vars['max_round']);
 
       $data['user_round_average'] = Stats::userRoundAverage($vars['emails'], $vars['min_round'], $vars['max_round']);
 
-      $data['jokers_hit'] = Stats::jokersHit();
+      $jokers_hit = Stats::jokersHit();
+      $jokers_miss = Stats::jokersMiss();
+
+      //$data['jokers_miss'] = $jokers_miss;
+      //$data['jokers_hit'] = $jokers_hit;
+
+      $data['joker_round'] = array();
+      for ($i = 3; $i < $maxrounds; $i++) {
+
+        $total = 0;
+
+        if (isset($jokers_hit[$i])) {
+          $total += $jokers_hit[$i];
+        } else {
+          $jokers_hit[$i] = 0;
+        }
+
+        if (isset($jokers_miss[$i])) {
+          $total += $jokers_miss[$i];
+        } else {
+          $jokers_miss[$i] = 0;
+        }
+        
+        if ($total > 0) {
+
+          $data['joker_round'][$i] = floor((100 / $total) * $jokers_hit[$i]);
+
+        }
+
+      }
+
+      $user_jokers_hit = Stats::userJokersHit($vars['emails'], $vars['min_round'], $vars['max_round']);
+      $user_jokers_miss = Stats::userJokersMiss($vars['emails'], $vars['min_round'], $vars['max_round']);
+
+      //$data['user_jokers_hit'] = $user_jokers_hit;
+      //$data['user_jokers_miss'] = $user_jokers_miss;
+
+      $data['joker_user_round'] = array();
+
+      foreach ($vars['emails'] as $ekey => $email) {
+        
+        for ($i = 3; $i < $maxrounds; $i++) {
+
+          $total = 0;
+
+          if (isset($user_jokers_hit[$ekey][$i])) {
+            $total += $user_jokers_hit[$ekey][$i];
+          } else {
+            $user_jokers_hit[$ekey][$i] = 0;
+          }
+
+          if (isset($user_jokers_miss[$ekey][$i])) {
+            $total += $user_jokers_miss[$ekey][$i];
+          } else {
+            $user_jokers_miss[$ekey][$i] = 0;
+          }
+
+          if ($total > 0) {
+
+            $data['joker_user_round'][$ekey][$i] = floor((100 / $total) * $user_jokers_hit[$ekey][$i]);
+
+          }
+
+        }
+
+      }
 
       //echo json_encode($data);
       //exit;

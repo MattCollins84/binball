@@ -20,9 +20,9 @@
       
       <h4>Add a new player...</h4>
 
-      <input type="text" class="form-control input-lg mb10" placeholder="Enter a players name..." id="player-name" />
+      <input type="text" class="form-control input-lg mb10" placeholder="Enter a players name..." id="player-name" value="matt" />
 
-      <input type="text" class="form-control input-lg mb10" placeholder="Enter their email address..." id="player-email" />
+      <input type="text" class="form-control input-lg mb10" placeholder="Enter their email address..." id="player-email" value="matt.collins@centralindex.com" />
 
       <p><a class="btn btn-success mb10" href='Javascript:binball.addPlayer();'><i class="fa fa-plus-circle"> </i> Add player</a></p>
 

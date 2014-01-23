@@ -67,17 +67,9 @@ class Stats  {
 
     if (is_array($res['rows']) && count($res['rows'])) {
 
-      $total = 0;
-
       foreach ($res['rows'] as $round) {
 
-        $total += $round['value'];
-
-      }
-
-      foreach ($res['rows'] as $round) {
-
-        $ret[$round['key']] = round((($round['value'] / $total) * 100), 0);
+        $ret[$round['key']] = $round['value'];
 
       }
 
@@ -96,17 +88,69 @@ class Stats  {
 
     if (is_array($res['rows']) && count($res['rows'])) {
 
-      $total = 0;
-
       foreach ($res['rows'] as $round) {
 
-        $total += $round['value'];
+        $ret[$round['key']] = $round['value'];
 
       }
 
-      foreach ($res['rows'] as $round) {
+    }
 
-        $ret[$round['key']] = round((($round['value'] / $total) * 100), 0);
+    return $ret;
+
+  }
+
+  // get user joker hit round averages
+  static public function userJokersHit($emails, $min, $max) {
+
+    $ret = array();
+
+    $max++;
+
+    foreach ($emails as $k => $email) {
+
+      $params = array("startkey" => '["'.$email.'", '.(int) $min.']', "endkey" => '["'.$email.'", '.(int) $max.']', "reduce" => "true", "group_level" => 999);
+
+      $res = Cloudant::doCurl("GET", "scores/_design/stats/_view/user_jokers_hit", array(), $params);
+
+      $ret[$k] = array();
+      if (is_array($res['rows']) && count($res['rows'])) {
+
+        foreach ($res['rows'] as $round) {
+
+          $ret[$k][$round['key'][1]] = $round['value'];
+
+        }
+
+      }
+
+    }
+
+    return $ret;
+
+  }
+
+  // get user joker miss round averages
+  static public function userJokersMiss($emails, $min, $max) {
+
+    $ret = array();
+
+    $max++;
+
+    foreach ($emails as $k => $email) {
+
+      $params = array("startkey" => '["'.$email.'", '.(int) $min.']', "endkey" => '["'.$email.'", '.(int) $max.']', "reduce" => "true", "group_level" => 999);
+
+      $res = Cloudant::doCurl("GET", "scores/_design/stats/_view/user_jokers_miss", array(), $params);
+
+      $ret[$k] = array();
+      if (is_array($res['rows']) && count($res['rows'])) {
+
+        foreach ($res['rows'] as $round) {
+
+          $ret[$k][$round['key'][1]] = $round['value'];
+
+        }
 
       }
 

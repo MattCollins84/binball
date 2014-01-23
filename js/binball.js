@@ -2,14 +2,15 @@ var BinBall = function() {
 
   this.players = []; //["Matt", "dave", "Glynn", "Simon", "Dan"];
   this.emails = []; //["Matt", "dave", "Glynn", "Simon", "Dan"];
-  this.jokers = [] //[false, false, false, false, false];
-  this.scores = [] //[[], [], [], [], []];
+  this.jokers = []; //[false, false, false, false, false];
+  this.scores = []; //[[], [], [], [], []];
   this.maxScores = [];
-  this.attempts = [] //[[], [], [], [], []];
+  this.attempts = []; //[[], [], [], [], []];
   this.leaderboard = [];
   this.currentPlayer = 0;
   this.currentRound = 3;
   this.totalRounds = 0;
+  this.maxDistance = 0;
 
   var parent = this;
 
@@ -202,6 +203,7 @@ var BinBall = function() {
 
     var totalRounds = parseInt($('#number-of-rounds').val(), 10);
     this.totalRounds = totalRounds;
+    this.maxDistance = totalRounds + 2;
 
     var max = this.calculateMaximum(3, totalRounds, true);
 
@@ -296,7 +298,7 @@ var BinBall = function() {
         var playerCell = $("<td/>", {"html": scoreInput, id: ident});
 
         // joker icon
-        var jokerIcon = $("<button />", {value: 0, text: "J", class: "btn btn-sm btn-warning pull-right btn-joker-"+p, id: "joker-"+ident, "data-toggle": "tooltip", "title": "Player Joker"});
+        var jokerIcon = $("<button />", {value: 0, text: "J", class: "btn btn-sm btn-warning pull-right btn-joker-"+p, id: "joker-"+ident, "data-toggle": "tooltip", "title": "Play Joker"});
         jokerIcon.tooltip({placement: "left"});
         (function(i) {
           jokerIcon.bind("click", function() {
@@ -361,6 +363,10 @@ var BinBall = function() {
     // hide all stats
     $('.stats').addClass("hidden");
 
+    if (this.currentRound > this.maxDistance) {
+      return alert("Game over, we have a winner!");
+    }
+
     // make round average visible
     $('#round-avg-'+this.currentRound).removeClass("hidden");
 
@@ -369,6 +375,9 @@ var BinBall = function() {
 
     // make player round average visible
     $('#round-'+this.currentRound+'-player-'+this.currentPlayer+'-avg').removeClass("hidden");
+
+    // make user round joker %
+    $('#joker-'+this.currentRound+'-player-'+this.currentPlayer+'-pc').removeClass("hidden");
 
   }
 
@@ -388,12 +397,12 @@ var BinBall = function() {
 
     this.jokers[player_id] = parseInt((round_id-3), 10);
 
-    parent.addScore("r"+round_id+"p"+player_id, $("select#scorer"+round_id+"p"+player_id).val());
+    parent.addScore("r"+round_id+"p"+player_id, $("select#scorer"+round_id+"p"+player_id).val(), true);
 
   }
 
   // calculate a score
-  this.addScore = function(player_id, score) {
+  this.addScore = function(player_id, score, viaPlayJoker) {
 
     var bits = player_id.split(/[a-zA-Z]/);
 
@@ -415,7 +424,6 @@ var BinBall = function() {
 
     else if (typeof this.scores[player_id][r] == "undefined" && this.scores[player_id].length < r) {
       alert("You cannot alter this score yet");
-      console.log("You cannot alter this score yet");
       $('select#scorer'+round_id+'p'+player_id).val("")
     }
 
@@ -489,7 +497,11 @@ var BinBall = function() {
     // determine what is the next player
     if (player_id == (this.players.length-1)) {
       this.currentPlayer = 0;
-      this.currentRound++;
+
+      if (viaPlayJoker !== true) {
+        this.currentRound++;
+      }
+      
     } else {
       this.currentPlayer++;
     }
