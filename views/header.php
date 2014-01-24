@@ -58,6 +58,9 @@
   
     <script src="/js/views.js"></script>
     <script src="/js/views/player.js"></script>
+    <script src="/js/views/dom.js"></script>
+    <script src="/js/views/scorecard.js"></script>
+    <script src="/js/views/game.js"></script>
 
     <script src="/js/binball.js"></script>
     
