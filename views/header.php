@@ -46,6 +46,19 @@
     <![endif]-->
 
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+    <? if (isset($data['insto']) && $data['insto']): ?>
+      <script type="text/javascript" src="https://api.insto.co.uk:3000/lib/client.js"></script>
+    <? endif; ?>
+
+    <!-- GAME MECHANICS -->
+    <script src="/js/models.js"></script>
+    <script src="/js/models/player.js"></script>
+    <script src="/js/models/game.js"></script>
+  
+    <script src="/js/views.js"></script>
+    <script src="/js/views/player.js"></script>
+
     <script src="/js/binball.js"></script>
     
   </head>

@@ -39,14 +39,24 @@
     static public function renderScorecard($rest) {
       
       $data = array();
+      $data['insto'] = true;
       
       $h = $rest->getHierarchy();
 
       $data['user'] = User::getActiveUser();
 
       $data['game_id'] = $h[2];
+      $data['creator_id'] = $h[3];
 
-      $data['suggested_players'] = Player::getSuggestedPlayers($data['user']['_id']);
+      // is this the games creator?
+      $data['creator'] = false;
+      if ($data['user']['_id'] == $data['creator_id']) {
+        $data['creator'] = true;
+      }
+
+      if ($data['creator']) {
+        $data['suggested_players'] = Player::getSuggestedPlayers($data['user']['_id']);
+      }
 
       $vars = $rest->getRequestVars();
 
@@ -72,7 +82,7 @@
         $game['user_id'] = $data['user']['_id'];
         $res = Game::createGame($game);
 
-        header("Location: /binball/game/".$res['id']);
+        header("Location: /binball/game/".$res['id']."/".$game['user_id']);
         exit;
       }
 
