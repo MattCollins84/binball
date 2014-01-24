@@ -20,6 +20,7 @@ var BinBall = function(game_id, user_id, creator) {
   this.maxDistance = 0;
   this.gameStarted = false;
   this.stats = null;
+  this.creator = creator;
 
   // reference to the parent object
   var parent = this;
@@ -115,6 +116,7 @@ var BinBall = function(game_id, user_id, creator) {
   var setSyncObject = function(data) {
 
     delete data.action;
+    delete data.creator;
 
     for (var d in data) {
 
@@ -137,6 +139,9 @@ var BinBall = function(game_id, user_id, creator) {
 
     // calculate total scores
     views.game.scores(parent);
+
+    // calculate attempt averages
+    views.game.averages(parent);
 
   }
 
@@ -256,8 +261,20 @@ var BinBall = function(game_id, user_id, creator) {
 
   }
 
-  this.playJoker = function() {
-    console.log('play joker');
+  // play a joker
+  this.playJoker = function(player_id) {
+    
+    var original = player_id;
+
+    var bits = player_id.split(/[a-zA-Z]/);
+
+    player_id = bits[bits.length-1];
+    var round_id = parseInt(bits[bits.length-2], 10);
+
+    this.jokers[player_id] = parseInt((round_id-3), 10);
+
+    parent.addScore("r"+round_id+"p"+player_id, $("select#scorer"+round_id+"p"+player_id).val(), true);
+
   }
 
   // calculate a score
@@ -329,6 +346,23 @@ var BinBall = function(game_id, user_id, creator) {
 
     sync();
 
+  }
+
+  this.jokerMiss = function(player_id) {
+
+    this.jokers[player_id] = 9999;
+    sync();
+    
+    $.ajax({
+      type: "GET",
+      url: "/miss/joker",
+      data: { game_id: $('#game_id').val(), email: this.emails[player_id], round: this.currentRound }
+    })
+    .done(function( msg ) {
+      
+      
+
+    });
   }
 
 }

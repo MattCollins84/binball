@@ -19,14 +19,18 @@ var ScorecardViews = function() {
         $("<th/>", {"text": "#"}).appendTo(headers);
         for (var p in game.players) {
           var playerHeading = $("<th/>", {"text": game.players[p]});
-          var joker = $("<button />", {"id": "joker-"+p, class: "pull-right btn btn-danger", text: "JF", "data-toggle": "tooltip", "title": "Joker Failed" });
-          joker.tooltip({placement: "left"});
-          joker.prependTo(playerHeading);
-          (function(player_id){
-            joker.bind('click', function() {
-              parent.jokerMiss(player_id)
-            });
-          })(p);
+          
+          if (game.jokers[p] === false) {
+            var joker = $("<button />", {"id": "joker-"+p, class: "pull-right btn btn-danger", text: "JF", "data-toggle": "tooltip", "title": "Joker Failed" });
+            joker.tooltip({placement: "left"});
+            joker.prependTo(playerHeading);
+            (function(player_id){
+              joker.bind('click', function() {
+                game.jokerMiss(player_id)
+              });
+            })(p);
+          }
+
           playerHeading.appendTo(headers);
         }
 
@@ -56,17 +60,29 @@ var ScorecardViews = function() {
       cell: function(game, round, player) {
 
         round += 3;
+        var roundIndex = round - 3;
+
+        var disabled = (game.creator?false:"disabled");
 
         // drop down
         var ident = "r"+round+"p"+player;
-        var scoreInput = $("<select />", {id: "score"+ident, class: "score-input"});
+        var scoreInput = $("<select />", {id: "score"+ident, class: "score-input", disabled: disabled});
 
         var o = $("<option />", {value: "", text: "- SELECT -"});
         o.appendTo(scoreInput);
 
+        // current attempts
+        var attempts = game.attempts[player];
+
         var attempt = 1;
         for (r = round; r > 0; r--) {
-          var o = $("<option />", {value: r, text: "Attempt "+attempt});
+          var selected = false;
+
+          if (typeof attempts[roundIndex] != "undefined" && attempts[roundIndex] == attempt) {
+            selected = "selected";
+          }
+
+          var o = $("<option />", {value: r, text: "Attempt "+attempt, selected: selected});
           o.appendTo(scoreInput);
           attempt++;
         }
@@ -77,16 +93,25 @@ var ScorecardViews = function() {
         
         var playerCell = $("<td/>", {"html": scoreInput, id: ident});
 
-        // joker icon
-        var jokerIcon = $("<button />", {value: 0, text: "J", class: "btn btn-sm btn-warning pull-right btn-joker-"+player, id: "joker-"+ident, "data-toggle": "tooltip", "title": "Play Joker"});
-        jokerIcon.tooltip({placement: "left"});
-        (function(i) {
-          jokerIcon.bind("click", function() {
-            game.playJoker(i);
-          });
-        })(ident);
+        // do we need to render the joker icon?
+        if (game.jokers[player] == roundIndex || game.jokers[player] === false) {
+          
+          // joker icon
+          var jokerIcon = $("<button />", {value: 0, text: "J", class: "btn btn-sm btn-warning pull-right btn-joker-"+player, id: "joker-"+ident, "data-toggle": "tooltip", "title": "Play Joker"});
+          
+          if (game.jokers[player] === false && game.creator) {
+            
+            jokerIcon.tooltip({placement: "left"});
+            (function(i) {
+              jokerIcon.bind("click", function() {
+                game.playJoker(i);
+              });
+            })(ident);
+            
+          }
 
-        jokerIcon.prependTo(playerCell);
+          jokerIcon.prependTo(playerCell);
+        }
 
         return playerCell;
 

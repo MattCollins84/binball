@@ -65,6 +65,8 @@ var GameViews = function() {
 
       scores: function(game) {
 
+        var obj = {};
+
         // for each player
         for (var p in game.players) {
 
@@ -72,7 +74,48 @@ var GameViews = function() {
 
           var scores = game.scores[p];
 
-          for (var s in scores)
+          for (var s in scores) {
+
+            var multiplier = 1;
+
+            if (game.jokers[p] == s && game.jokers[p] !== false) {
+              multiplier = 2;
+            }
+
+            total += (scores[s] * multiplier);
+
+          }
+
+          $('#total-'+p).text(total);
+
+        }
+
+      },
+
+      averages: function(game) {
+
+        var obj = {};
+
+        // for each player
+        for (var p in game.players) {
+
+          var total = 0;
+
+          var attempts = game.attempts[p];
+
+          for (var a in attempts) {
+
+            total += attempts[a];
+
+          }
+
+          var avg = (total / attempts.length).toFixed(3);
+
+          if (isNaN(avg)) {
+            avg = 0;
+          }
+
+          $('#avg-'+p).text(avg);
 
         }
 
