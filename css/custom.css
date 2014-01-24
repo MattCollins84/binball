@@ -30,6 +30,10 @@
   margin-top: 60px;
 }
 
+.mt80 {
+  margin-top: 80px;
+}
+
 .mb0 {
   margin-bottom: 0;
 }
@@ -104,7 +108,7 @@ ul.rules-list li {
 }
 
 table#scores-table th {
-  height: 81px;
+
 }
 
 img[id^=joker] {

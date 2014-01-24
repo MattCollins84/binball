@@ -9,6 +9,8 @@ class Score  {
   // create a player
   static public function addScore($score) {
 
+    return false;
+
     $score['version'] = Score::VERSION;
     
     $existingDoc = Score::findScore($score['email'], $score['round'], $score['game_id'], true);
@@ -32,7 +34,7 @@ class Score  {
 
   // create a player
   static public function missJoker($email, $game_id, $round) {
-
+    return false;
     // if we have an existing score, update it to have a missed joker
     $existingDoc = Score::findScore($email, $round, $game_id, true);
 

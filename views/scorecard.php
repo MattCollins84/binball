@@ -9,7 +9,7 @@
 
 </script>
 
-<div class="container mb20">
+<div class="container mt80">
   
   <input type="hidden" name="game_id" id="game_id" value="<?=$data['game_id'];?>" />
   <input type="hidden" name="user_id" id="user_id" value="<?=$data['user']['_id'];?>" />
@@ -24,7 +24,7 @@
 
       <input type="text" class="form-control input-lg mb10" placeholder="Enter their email address..." id="player-email" value="matt.collins@centralindex.com" />
 
-      <p><a class="btn btn-success mb10" href='Javascript:binball.addPlayer();'><i class="fa fa-plus-circle"> </i> Add player</a></p>
+      <p><a class="btn btn-success mb10" href='Javascript:binball.addPlayer();'><i class="fa fa-plus-circle white"> </i> Add player</a></p>
 
     </div>
 
@@ -44,7 +44,7 @@
           }
         }
       ?>
-        <p><a href='Javascript:binball.addSuggestedPlayer("<?=$suggest['name'];?>", "<?=$suggest['email'];?>");' data-email="<?=$suggest['email'];?>"><?=$suggest['name'];?> (<?=implode("@", $email);?>)</a></p>
+        <p class="mb10"><a href='Javascript:binball.addSuggestedPlayer("<?=$suggest['name'];?>", "<?=$suggest['email'];?>");' data-email="<?=$suggest['email'];?>"><?=$suggest['name'];?> (<?=implode("@", $email);?>)</a></p>
       <? endforeach; ?>
 
     </div>
@@ -63,7 +63,7 @@
     <div class="col-md-2">
       
       <div class="input-group input-group-lg mt20 mb20">
-        <input type="text" class="form-control input-sm" value="8" id="number-of-rounds" size="3" />
+        <input type="text" class="form-control input-sm" value="8" id="number-of-rounds" size="5" />
         <span class="input-group-addon">Rounds</span>
       </div>
 
@@ -75,7 +75,7 @@
     
     <div class="col-md-12">
       
-      <button class="btn btn-success btn-lg mt20" onclick="binball.start()"><i class="fa fa-play-circle"></i> Play BinBall</button>
+      <button class="btn btn-success btn-lg mt20" onclick="binball.start()"><i class="fa fa-play-circle white"></i> Play BinBall</button>
 
     </div>
 

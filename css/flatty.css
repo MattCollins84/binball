@@ -154,13 +154,13 @@ i {
 
 /* HeaderWrap */
 .wrap {
-    /* background: url(../img/bg01.jpg) no-repeat center top; */
+    /* 
     background-color: orange;
     padding-top:20px;
     padding-bottom:0px;
     background-attachment: relative;
     background-position: center center;
-    /*min-height: 650px;*/
+
     width: 100%;
     
     -webkit-background-size: 100%;
@@ -171,5 +171,6 @@ i {
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover;
+    background-size: cover
+    */
 }

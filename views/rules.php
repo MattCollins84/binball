@@ -3,7 +3,6 @@
   <div class="row">
     
     <div class="col-md-12">
-      <img src="/images/nbba-xsmall.png" class="pull-right" />
       <h1>OFFICIAL Rules &amp; Regulations for BinBall</h1>
       <p>These are the OFFICIAL Rules &amp; Regulations for BinBall, however players are encouraged to adapt these rules to suit their environment.</p>
     </div>
@@ -101,7 +100,6 @@
         <li>A player is throwing from a distance of 7 measures and misses his first 2 attempts. His 3rd attempt is successful. He will be awarded 5 points</li>
         <li>If he had played his joker on this throw, he would have received 10 points</li>
       </ul>
-      <hr class="mb20 mt20" />
 
     </div>
 

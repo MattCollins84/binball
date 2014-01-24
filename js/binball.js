@@ -170,7 +170,7 @@ var BinBall = function() {
     $('#player-list').text("");
 
     for (var p in this.players) {
-      var p = $("<p />", {"text": this.players[p]});
+      var p = $("<p />", {"text": this.players[p], class: "mb10"});
       p.appendTo('#player-list');
     }
 
@@ -235,7 +235,7 @@ var BinBall = function() {
     // add the headings
     var headingsRow = $("<tr/>");
 
-    $("<th/>", {"text": ""}).appendTo(headingsRow);
+    $("<th/>", {"text": "#"}).appendTo(headingsRow);
     for (var p in this.players) {
       var playerHeading = $("<th/>", {"text": this.players[p]});
       var joker = $("<button />", {"id": "joker-"+p, class: "pull-right btn btn-danger", text: "JF", "data-toggle": "tooltip", "title": "Joker Failed" });

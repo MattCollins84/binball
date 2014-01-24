@@ -72,7 +72,7 @@
           <a class="btn btn-success" href="/binball/play" <?=$confirm;?>><i class="fa fa-play-circle white"></i> Play BinBall</a>
           <? if ($data['user']): ?>
             <a href="#" class="btn btn-success"><i class="fa fa-user fa-lg white"> </i> <?=$data['user']['name'];?></a>
-            <a href="/sign-out" class="btn btn-info"><i class="fa fa-sign-out fa-lg white"></i></a>
+            <a href="/sign-out" class="btn btn-warning"><i class="fa fa-sign-out fa-lg white"></i></a>
           <? else: ?>
             <a href="/auth/facebook" class="btn btn-primary"><i class="fa fa-facebook-square fa-lg white"></i>&nbsp;&nbsp;Connect with Facebook</a>
           <? endif; ?>
