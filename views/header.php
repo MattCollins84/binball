@@ -33,6 +33,7 @@
     <link href="/css/bootstrap.css" rel="stylesheet">
   
     <!-- Custom CSS -->
+    <link href="/css/flatty.css" rel="stylesheet">
     <link href="/css/custom.css" rel="stylesheet">
 
     <!-- Font Awesome -->
@@ -51,7 +52,7 @@
 
   <body>
 
-    <div class="navbar navbar-inverse <?=($data['jumbotron']?"mb0":"");?> br0" role="navigation">
+    <div class="navbar navbar-fixed-top navbar-default br0" role="navigation">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -60,7 +61,6 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">BinBall</a>
         </div>
         
         <form class="navbar-form navbar-right">
@@ -69,19 +69,20 @@
             $confirm = "onclick=\"return confirm('This will end your current game, do you want to continue?');\"";;
           }
           ?>
-          <a class="btn btn-success" href="/binball/play" <?=$confirm;?>><i class="fa fa-play-circle"></i> Play BinBall</a>
+          <a class="btn btn-success" href="/binball/play" <?=$confirm;?>><i class="fa fa-play-circle white"></i> Play BinBall</a>
           <? if ($data['user']): ?>
-            <a href="#" class="btn btn-success"><i class="fa fa-user fa-lg"> </i> <?=$data['user']['name'];?></a>
-            <a href="/sign-out" class="btn btn-info"><i class="fa fa-sign-out fa-lg"></i></a>
+            <a href="#" class="btn btn-success"><i class="fa fa-user fa-lg white"> </i> <?=$data['user']['name'];?></a>
+            <a href="/sign-out" class="btn btn-info"><i class="fa fa-sign-out fa-lg white"></i></a>
           <? else: ?>
-            <a href="/auth/facebook" class="btn btn-primary"><i class="fa fa-facebook-square fa-lg"></i>&nbsp;&nbsp;Connect with Facebook</a>
+            <a href="/auth/facebook" class="btn btn-primary"><i class="fa fa-facebook-square fa-lg white"></i>&nbsp;&nbsp;Connect with Facebook</a>
           <? endif; ?>
         </form>
         
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li><a href="/rules">Rules</a></li>
-            <li><a href="/guide">Guide</a></li>
+            <li><a href="/"><b>Home</b></a></li>
+            <li><a href="/rules"><b>Rules</b></a></li>
+            <li><a href="/guide"><b>Guide</b></a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

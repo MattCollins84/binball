@@ -1,19 +1,12 @@
-    
-    <!--
-    <div class="container mb20">
-      
-      <div class="row">
-        
-        <div class="alert alert-info">
-          
-          <p>Words</p>
-  
+    <div class="container">
+      <hr>
+      <div class="row centered">
+        <div class="col-lg-12">
+          <img src="/images/nbba-xsmall.png" />
+          <p class="mt10 centered">&copy; binball.org <?=date("Y");?> | National BinBall Association</p>
         </div>
-
-      </div>
-
+      </div><!-- /row -->
     </div>
-    -->
   
     <!-- Bootstrap core JavaScript
     ================================================== -->

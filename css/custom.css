@@ -14,8 +14,20 @@
   margin-bottom: 60px!important;
 }
 
+.mt10 {
+  margin-top: 10px;
+}
+
 .mt20 {
   margin-top: 20px;
+}
+
+.mt40 {
+  margin-top: 40px;
+}
+
+.mt60 {
+  margin-top: 60px;
 }
 
 .mb0 {
@@ -60,11 +72,11 @@
 
 .headline {
   font-size: 50px;
-  color: #5A5A5A;
+  color: orange;
 }
 
 .headline span {
-  color: #999;
+  color: #FFF62A;
 }
 
 .feature {
@@ -105,4 +117,12 @@ img[id^=joker] {
 
 .footer {
   background: #46477d;
+}
+
+.white {
+  color: #FFF!important;
+}
+
+#headerwrap p.quote {
+  color: #fff;
 }
