@@ -36,13 +36,13 @@
         <?
           $email = explode("@", $suggest['email']);
           foreach ($email as $k => $e) {
-            if (strlen($email[$k]) > 6) {
+            /*if (strlen($email[$k]) > 6) {
               if ($k) {
                 $email[$k] = "...".substr($e, -7);
               } else {
                 $email[$k] = substr($e, 0, 7)."...";
               }
-            }
+            }*/
           }
         ?>
           <p class="mb10"><a href='Javascript:binball.addSuggestedPlayer("<?=$suggest['name'];?>", "<?=$suggest['email'];?>");' data-email="<?=$suggest['email'];?>"><?=$suggest['name'];?> (<?=implode("@", $email);?>)</a></p>

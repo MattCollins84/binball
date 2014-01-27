@@ -11,6 +11,7 @@ class Player  {
 
     if ($existingUser) {
       $existingUser['created_by'][] = $player['created_by'][0];
+      $existingUser['created_by'] = array_unique($existingUser['created_by']);
       $player = $existingUser;
     }
 
