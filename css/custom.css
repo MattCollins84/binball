@@ -138,3 +138,8 @@ img[id^=joker] {
 .overflow {
   overflow: auto;
 }
+
+.block100 {
+  display: block;
+  width: 100%!important;
+}

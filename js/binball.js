@@ -384,4 +384,10 @@ var BinBall = function(game_id, user_id, creator) {
     
   }
 
+  // show share link
+  this.share = function(el) {
+    $(el).addClass("hidden");
+    $('#share').removeClass("hidden");
+  }
+
 }
