@@ -11,7 +11,7 @@
       }
     },
     {
-      "hostnames": ["binball.org"],
+      "hostnames": ["binball.org", "www.binball.org"],
       "in_production": true,
       "cloudant": "https://binball.cloudant.com/",
       "facebook": {
