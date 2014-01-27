@@ -52,6 +52,8 @@ var BinBall = function(game_id, user_id, creator) {
     // when a new user connects
     onUserConnect: function(data) {
 
+      return pushSync(data._id);
+
     },
 
     // when a user disconnects
@@ -191,6 +193,10 @@ var BinBall = function(game_id, user_id, creator) {
 
   var sync = function() {
     insto.send(userQuery, getSyncObj(), true);
+  }
+
+  var pushSync = function(id) {
+    insto.send({"_id": id}, getSyncObj(), true);
   }
 
   /*

@@ -65,6 +65,12 @@
         "controllerClass": "StatsController",
         "method": "getStats",
         "authentication": false 
+    },
+    {
+        "regex": "^/profile$",
+        "controllerClass": "MainController",
+        "method": "renderProfile",
+        "authentication": false 
     }
   ]
 }
