@@ -20,8 +20,8 @@
       <a class="btn btn-success mb10 pull-right hidden" id='share-btn' onclick="binball.share(this);" href='#'><i class="fa fa-share white"> </i> Share this game</a>
       <div class="input-group block100" id='share'>
         <input type="text" id="shareurl" class="form-control hidden" value="http://<?=$_SERVER['HTTP_HOST'].str_replace($data['creator_id'], "share", $_SERVER['REDIRECT_URL']);?>" />
-        <a class='btn btn-info mt20' target="_blank" href='https://twitter.com/intent/tweet?text=<?=urlencode("Follow my #binball game live! http://".$_SERVER['HTTP_HOST'].str_replace($data['creator_id'], "share", $_SERVER['REDIRECT_URL']));?>' target="_blank"><i class="fa fa-2x fa-twitter-square fa-lg white"></i> Share game</a>
-        <a class='btn btn-info mt20' target="_blank" href='https://www.facebook.com/dialog/feed?app_id=134530986736267&link=http%3A%2F%2Fwww.binball.org&name=BinBall&description=<?=urlencode("Follow my #binball game live! http://".$_SERVER['HTTP_HOST'].str_replace($data['creator_id'], "share", $_SERVER['REDIRECT_URL']));?>&amp;redirect_uri=http://facebook.com/' target="_blank"><i class="fa fa-2x fa-facebook-square fa-lg white"></i> Share game</a>
+        <a class='btn btn-info mt20 pull-right' target="_blank" href='https://twitter.com/intent/tweet?text=<?=urlencode("Follow my #binball game live! http://".$_SERVER['HTTP_HOST'].str_replace($data['creator_id'], "share", $_SERVER['REDIRECT_URL']));?>' target="_blank"><i class="fa fa-2x fa-twitter-square fa-lg white"></i> Share game</a>
+        <a class='btn btn-info mt20 pull-right mr20' target="_blank" href='https://www.facebook.com/dialog/feed?app_id=134530986736267&link=http%3A%2F%2Fwww.binball.org&name=BinBall&description=<?=urlencode("Follow my #binball game live! http://".$_SERVER['HTTP_HOST'].str_replace($data['creator_id'], "share", $_SERVER['REDIRECT_URL']));?>&amp;redirect_uri=http://facebook.com/' target="_blank"><i class="fa fa-2x fa-facebook-square fa-lg white"></i> Share game</a>
       </div>
     </div>
 
