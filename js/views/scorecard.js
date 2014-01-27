@@ -38,14 +38,14 @@ var ScorecardViews = function() {
 
       },
 
-      row: function(round) {
+      row: function(round, game) {
 
         var opts = {
           id: "round-"+(round+3)
         }
 
         // make the first row active
-        if (round == 0) {
+        if ((round+3) == game.currentRound) {
           opts.class = "success";
         }
 

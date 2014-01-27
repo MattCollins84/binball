@@ -134,14 +134,41 @@ var BinBall = function(game_id, user_id, creator) {
     // render the players list
     views.players.renderPlayerList(parent.players);
 
-    // render the scorecard
-    views.game.render(parent);
+    if (parent.gameStarted) {
 
-    // calculate total scores
-    views.game.scores(parent);
+      // render the scorecard
+      views.game.render(parent);
 
-    // calculate attempt averages
-    views.game.averages(parent);
+      // calculate total scores
+      views.game.scores(parent);
+
+      // calculate attempt averages
+      views.game.averages(parent);
+
+      // leaderboard
+      views.game.leadboard(parent);
+
+      // do we need to do the stats?
+      if($('#stats').html() === "") {
+        
+        models.game.getStats(parent, function(stats) {
+
+          $('#stats').html(stats);
+          views.game.stats(parent);
+
+        });
+
+      }
+
+      // or just render them
+      else {
+
+        views.game.stats(parent);
+
+      }
+
+    }
+    
 
   }
 
@@ -188,15 +215,8 @@ var BinBall = function(game_id, user_id, creator) {
     addPlayer(name, email);
     
     // store in cloudant
-    $.ajax({
-      type: "GET",
-      url: "/create/player",
-      data: { name: name, email: email }
-    })
-    .done(function( msg ) {
+    models.players.create(name, email, function(res) {
       
-      
-
     });
 
   }
@@ -227,19 +247,9 @@ var BinBall = function(game_id, user_id, creator) {
       this.maxScores[m] = max;
     }
 
-    $.ajax({
-      type: "GET",
-      url: "/stats",
-      data: { min_round: 3, max_round: (parseInt(totalRounds, 10) + 2), emails: parent.emails }
-    })
-    .done(function( html ) {
-      
-      // parent.stats = html;
-      parent.gameStarted = true;
+    parent.gameStarted = true;
 
-      sync();
-
-    });
+    sync();
 
   }
 
@@ -333,14 +343,16 @@ var BinBall = function(game_id, user_id, creator) {
       this.currentPlayer++;
     }
 
-    $.ajax({
-      type: "GET",
-      url: "/add/score",
-      data: { game_id: $('#game_id').val(), email: this.emails[player_id], attempt: attempt, hit_joker: hitJoker, round: round_id }
-    })
-    .done(function( msg ) {
-      
+    // add cloudant
+    models.game.addScore({ 
+      game_id: $('#game_id').val(), 
+      email: this.emails[player_id], 
+      attempt: attempt, 
+      hit_joker: hitJoker, 
+      round: round_id 
+    }, function(res) {
 
+      // console.log('score added', res);
 
     });
 
@@ -348,21 +360,22 @@ var BinBall = function(game_id, user_id, creator) {
 
   }
 
+  // miss your joker
   this.jokerMiss = function(player_id) {
 
     this.jokers[player_id] = 9999;
     sync();
-    
-    $.ajax({
-      type: "GET",
-      url: "/miss/joker",
-      data: { game_id: $('#game_id').val(), email: this.emails[player_id], round: this.currentRound }
-    })
-    .done(function( msg ) {
-      
-      
+
+    models.game.jokerMiss({ 
+      game_id: $('#game_id').val(), 
+      email: this.emails[player_id], 
+      round: this.currentRound
+    }, function(res) {
+
+      // console.log('joker missed', res);
 
     });
+    
   }
 
 }

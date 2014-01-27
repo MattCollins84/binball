@@ -4,10 +4,18 @@ var PlayerModels = function() {
 
     return {
 
-      add: function(name, email, callback) {
+      create: function(name, email, callback) {
 
-        
-        callback();
+        $.ajax({
+          type: "GET",
+          url: "/create/player",
+          data: { name: name, email: email }
+        })
+        .done(function( msg ) {
+           
+          return callback(msg);
+
+        });
 
       }
 
