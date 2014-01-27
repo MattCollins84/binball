@@ -67,6 +67,37 @@
       $data['user_round_average'] = Stats::userRoundAverage($emails, 3, 15);
       $data['round_average'] = Stats::roundAverage(3, 15);
 
+      $jokers_hit = Stats::jokersHit();
+      $jokers_miss = Stats::jokersMiss();
+
+      //$data['jokers_miss'] = $jokers_miss;
+      //$data['jokers_hit'] = $jokers_hit;
+
+      $data['joker_round'] = array();
+      for ($i = 3; $i < 99; $i++) {
+
+        $total = 0;
+
+        if (isset($jokers_hit[$i])) {
+          $total += $jokers_hit[$i];
+        } else {
+          $jokers_hit[$i] = 0;
+        }
+
+        if (isset($jokers_miss[$i])) {
+          $total += $jokers_miss[$i];
+        } else {
+          $jokers_miss[$i] = 0;
+        }
+        
+        if ($total > 0) {
+
+          $data['joker_round'][$i] = floor((100 / $total) * $jokers_hit[$i]);
+
+        }
+
+      }
+
       $user_jokers_hit = Stats::userJokersHit($emails, 3, 15);
       $user_jokers_miss = Stats::userJokersMiss($emails, 3, 15);
 

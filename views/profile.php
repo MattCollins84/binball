@@ -46,7 +46,8 @@
 
         <? foreach ($joker_pc as $round => $pc): ?>
           <div class="stats alert alert-success">
-            <span class="label label-danger pull-right">Your joker success is <?=$pc;?>%</span>
+            <span class="label label-warning pull-right">Global success is <?=$data['joker_round'][$round];?>%</span>
+            <span class="label label-danger pull-right mr20">Your joker success is <?=$pc;?>%</span>
             <h4>Round <?=$round;?>. </h4>
           </div>
         <? endforeach; ?>
