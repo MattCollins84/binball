@@ -57,7 +57,7 @@
       <h2>1.3. Measures</h2>
       <p>Although a measure is not a physical piece of equipment it is important to understand what a measure is and how it is applied to BinBall.</p>
       <p>A measure is a fixed distance, determined pre-game, that is used to mark out the distances the players will throw from.</p>
-      <p>A measure is typically 18" in length, however it is suggested that measure sizes be adapted to suit the playing environment (i.e. the length of a floor tile) for ease and consistency</p>
+      <p>A measure is typically 50cm in length, however it is suggested that measure sizes be adapted to suit the playing environment (i.e. the length of a floor tile) for ease and consistency</p>
 
       <hr class="mb20 mt20" />
       
