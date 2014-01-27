@@ -29,6 +29,8 @@
       $player['email'] = $vars['email'];
       $player['name'] = $vars['name'];
       $player['created_by'] = array($data['user']['_id']);
+      
+
       $res = Player::createPlayer($player);
 
       echo json_encode(array("success" => true));

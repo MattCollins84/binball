@@ -82,7 +82,7 @@
       $player = array();
       $player['email'] = $u['email'];
       $player['name'] = $u['first_name']." ".$u['last_name'];
-      $player['created_by'] = $user['_id'];
+      $player['created_by'] = array($user['_id']);
       $res = Player::createPlayer($player);
 
       $_SESSION['user'] = $user;
