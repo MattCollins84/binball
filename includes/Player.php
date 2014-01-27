@@ -10,7 +10,8 @@ class Player  {
     $existingUser = Player::getByEmail($player['email']);
 
     if ($existingUser) {
-      return false;
+      $existingUser['created_by'][] = $player['created_by'][0];
+      $player = $existingUser;
     }
 
     $res = Cloudant::doCurl("POST", "players", $player);
