@@ -75,7 +75,7 @@ var ScorecardViews = function() {
         var attempts = game.attempts[player];
 
         var attempt = 1;
-        for (r = round; r > 0; r--) {
+        for (r = round; r > round-3; r--) {
           var selected = false;
 
           if (typeof attempts[roundIndex] != "undefined" && attempts[roundIndex] == attempt) {
@@ -87,7 +87,13 @@ var ScorecardViews = function() {
           attempt++;
         }
 
-        var o = $("<option />", {value: 0, text: "- FAILED -"});
+        var failSelected = false;
+        
+        if (game.scores[player][roundIndex] == 0) {
+          failSelected = "selected";
+        }
+
+        var o = $("<option />", {value: 0, text: "- FAILED -", selected: failSelected});
         o.appendTo(scoreInput);
 
         

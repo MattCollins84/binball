@@ -1,7 +1,6 @@
 <?PHP
 session_start();
-require_once("includes/DB.php");
-global $config, $mysql;
+global $config;
 $json = json_decode(file_get_contents('includes/config.json'), true);
 $hostname = $_SERVER['HTTP_HOST'];
 
@@ -17,7 +16,6 @@ foreach ($json['config'] as $c) {
 // mark if loaded or not
 if ($config) {
   $config['is_loaded'] = true;
-  $mysql = new DB();
 } else {
   $config['is_loaded'] = false;
 }

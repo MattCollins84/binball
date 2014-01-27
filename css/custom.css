@@ -130,3 +130,7 @@ img[id^=joker] {
 #headerwrap p.quote {
   color: #fff;
 }
+
+.overflow {
+  overflow: auto;
+}
