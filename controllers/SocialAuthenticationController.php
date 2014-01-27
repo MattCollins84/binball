@@ -53,7 +53,7 @@
     // previously failed auth attempt, go back
     else if (!$fb->getUser() && $_SESSION['facebook_auth_attempted']) {
       
-      header("Location: /");
+      header("Location: /sign-out");
       exit;
       
     }

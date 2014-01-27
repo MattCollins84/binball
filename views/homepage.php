@@ -10,7 +10,7 @@
         <h1 class="mt0">Welcome to BinBall.<br /><span>Breaktime will never be the same...</span></h1>
         <p class="quote"><i class="fa fa-quote-left white"></i>BinBall changed my life, I don't know how I got through my working day before I discovered BinBall...<i class="fa fa-quote-right pull-right white"> </i></p>
         <p class="quote pull-right overflow"><b>- Dave Fender</b></p>
-        <p><a class='btn btn-info' href="http://ctt.ec/Yek6i" target="_blank"><i class="fa fa-2x fa-twitter-square fa-lg white"></i></a> <a class='btn btn-info' href="#" target="_blank"><i class="fa fa-2x fa-facebook-square fa-lg white"></i></a></p>
+        <p><a class='btn btn-info' href="http://ctt.ec/P2eb4" target="_blank"><i class="fa fa-2x fa-twitter-square fa-lg white"></i></a> <a class='btn btn-info' href="http://hrefshare.com/43f4" target="_blank"><i class="fa fa-2x fa-facebook-square fa-lg white"></i></a></p>
       </div>
       
     </div>
