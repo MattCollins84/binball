@@ -97,7 +97,7 @@
           <ul class="nav navbar-nav">
             <li><a href="/"><b>Home</b></a></li>
             <li><a href="/rules"><b>Rules</b></a></li>
-            <li><a href="/guide"><b>Guide</b></a></li>
+            <!-- <li><a href="/guide"><b>Guide</b></a></li>-->
           </ul>
         </div><!--/.nav-collapse -->
       </div>

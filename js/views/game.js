@@ -241,6 +241,9 @@ var GameViews = function() {
         // make user round joker %
         $('#joker-'+game.currentRound+'-player-'+game.currentPlayer+'-pc').removeClass("hidden");
 
+        // make user round fail %
+        $('#fail-'+game.currentRound+'-player-'+game.currentPlayer+'-pc').removeClass("hidden");
+
       }
 
     }

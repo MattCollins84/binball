@@ -100,8 +100,31 @@
 
       }
 
-      //echo json_encode($data);
-      //exit;
+      $user_round_fails = Stats::userRoundFails($vars['emails'], $vars['min_round'], $vars['max_round']);
+      $data['user_round_fails'] = array();
+      foreach ($user_round_fails as $user => $round_fail) {
+
+        foreach ($round_fail as $round => $stats) {
+
+          if (!isset($stats['fail']) && isset($stats['success'])) {
+            $data['user_round_fails'][$user][$round] = 0;
+          }
+
+          elseif (isset($stats['fail']) && !isset($stats['success'])) {
+            $data['user_round_fails'][$user][$round] = 100;
+          }
+
+          else {
+            $total = $stats['fail'] + $stats['success'];
+            $data['user_round_fails'][$user][$round] = round(($stats['fail'] * 100) / $total, 0);
+          }
+
+        }
+
+      }
+
+      // echo json_encode($data);
+      // exit;
 
       echo View::renderView("round_average", $data, true);
  

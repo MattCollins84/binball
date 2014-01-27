@@ -3,10 +3,21 @@
     {
       "hostnames": ["dev.binball.net"],
       "in_production": false,
+      "cloudant": "https://binball.cloudant.com/",
       "facebook": {
-      	"app_id": "497742040344329",
-      	"app_secret": "d9782a846eb734fc9c15e8f551e2077b",
-      	"return_url": "/auth/facebook"      	
+        "app_id": "497742040344329",
+        "app_secret": "d9782a846eb734fc9c15e8f551e2077b",
+        "return_url": "/auth/facebook"        
+      }
+    },
+    {
+      "hostnames": ["binball.org"],
+      "in_production": true,
+      "cloudant": "https://binball.cloudant.com/",
+      "facebook": {
+        "app_id": "1455285094683498",
+        "app_secret": "7946f49f40e3b9abac8debb5e0f28285",
+        "return_url": "/auth/facebook"        
       }
     }
   ]

@@ -31,3 +31,13 @@
     </div>
   <? endforeach; ?>
 <? endforeach; ?>
+
+<? foreach ($data['user_round_fails'] as $player_id => $fail_pc): ?>
+
+  <? foreach ($fail_pc as $round => $pc): ?>
+    <div id='fail-<?=$round;?>-player-<?=$player_id;?>-pc' class="stats alert alert-success hidden">
+      <span class="label label-danger pull-right"><?=$pc;?></span>
+      <h4>Player Fail % </h4>
+    </div>
+  <? endforeach; ?>
+<? endforeach; ?>

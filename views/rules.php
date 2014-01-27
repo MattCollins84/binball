@@ -89,7 +89,7 @@
       
       <a name="rules2.3"></a>
       <h2>2.3. Scoring points</h2>
-      <p>The current player gets a number of attempts to get the ball into the bin. This number is the current number of measures from the bin.</p>
+      <p>The current player gets three attempts to get the ball into the bin.</p>
       <p>If the player is successful in getting the ball into the bin, he/she will receive some points. The number of points awarded is equal to the number of measures away from the bin, minus the number of failed attempts.</p>
       <p>The ball must stay in the bin to be classed as a successful throw. If the ball bounces out is is classed as a failed attempt and no points are awarded.</p>
       <p>If the ball ends up in the bin after bouncing off a surface other than the floor (e.g. a wall, or a nearby desk), this is classed as a <b>valid</b> throw and the usual points are awarded.</p>

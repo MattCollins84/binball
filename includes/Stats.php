@@ -160,5 +160,43 @@ class Stats  {
 
   }
 
+  // get user joker miss round averages
+  static public function userRoundFails($emails, $min, $max) {
+
+    $ret = array();
+
+    $max++;
+
+    foreach ($emails as $k => $email) {
+
+      $params = array("startkey" => '["'.$email.'", '.(int) $min.']', "endkey" => '["'.$email.'z", '.(int) $max.']', "reduce" => "true", "group_level" => 3);
+
+      $res = Cloudant::doCurl("GET", "scores/_design/stats/_view/user_round_fails", array(), $params);
+
+      $ret[$k] = array();
+
+      if (is_array($res['rows']) && count($res['rows'])) {
+
+        foreach ($res['rows'] as $row) {
+
+          $round = $row['key'][1];
+          $fail = $row['key'][2];
+
+          if ($fail) {
+            $ret[$k][$round]['fail'] = $row['value'];
+          } else {
+            $ret[$k][$round]['success'] = $row['value'];
+          }
+
+        }
+
+      }
+
+    }
+
+    return $ret;
+
+  }
+
 }
 ?>
