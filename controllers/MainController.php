@@ -73,8 +73,8 @@
       $data['joker_user_round'] = array();
 
       foreach ($emails as $ekey => $email) {
-        
-        for ($i = 3; $i < $maxrounds; $i++) {
+
+        for ($i = 3; $i < 99; $i++) {
 
           $total = 0;
 

@@ -123,8 +123,8 @@
 
       }
 
-      // echo json_encode($data);
-      // exit;
+       echo json_encode($data);
+       exit;
 
       echo View::renderView("round_average", $data, true);
  
