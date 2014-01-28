@@ -3,10 +3,6 @@ RewriteBase /
 
 Options -Indexes
 
-# Catch old school URL's
-RewriteRule ^login.php$ /login [R=301,QSA,L]
-RewriteRule ^reset.php$ /reset [R=301,QSA,L]
-
 # Redirect to controllers
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
