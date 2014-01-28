@@ -16,7 +16,7 @@ var HomepageViews = function() {
 
           var p = $("<p />");
 
-          var a = $("<a />", {id: "game-"+game, href: "/binball/game/"+game+"/share", text: "Created by "+name});
+          var a = $("<a />", {id: "game-"+game, href: "/binball/game/"+game+"/share", text: "Spectate game created by "+name});
           a.appendTo(p);
           p.appendTo('#livelist');
 
