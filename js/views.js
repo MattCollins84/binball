@@ -5,7 +5,8 @@ var BinBallViews = function() {
     return {
 
       players: new PlayerViews(),
-      game: new GameViews()
+      game: new GameViews(),
+      homepage: new HomepageViews()
 
     }
 

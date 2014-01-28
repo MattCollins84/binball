@@ -64,8 +64,19 @@
     <script src="/js/views/player.js"></script>
     <script src="/js/views/scorecard.js"></script>
     <script src="/js/views/game.js"></script>
+    <script src="/js/views/homepage.js"></script>
 
     <script src="/js/binball.js"></script>
+    <script src="/js/binball_homepage.js"></script>
+  
+
+    <? if ($data['homepage']): ?>
+    <script>
+      $(document).ready(function() {
+        var binball = new BinBallHomepage();
+      });
+    </script>
+    <? endif; ?>
     
   </head>
 
@@ -101,7 +112,7 @@
           <ul class="nav navbar-nav">
             <li><a href="/"><b>Home</b></a></li>
             <li><a href="/rules"><b>Rules</b></a></li>
-            <!-- <li><a href="/guide"><b>Guide</b></a></li>-->
+            <li><a href="/guide"><b>Guide</b></a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

@@ -7,7 +7,7 @@
             <a href="http://ctt.ec/P2eb4" target="_blank"><i class="fa fa-2x fa-twitter-square fa-lg"></i></a>
             <a href="http://hrefshare.com/43f4" target="_blank"><i class="fa fa-2x fa-facebook-square fa-lg"></i></a>
           </p>
-          <p class="centered">&copy; binball.org <?=date("Y");?> | National BinBall Association | <a href="/terms" alt="Terms &amp; conditions">terms</a></p>
+          <p class="centered">&copy; binball.org <?=date("Y");?> | National BinBall Association</p>
         </div>
       </div><!-- /row -->
     </div>

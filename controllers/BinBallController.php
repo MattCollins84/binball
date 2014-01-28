@@ -82,6 +82,7 @@
 
         $game = array();
         $game['user_id'] = $data['user']['_id'];
+        $game['user_email'] = $data['user']['email'];
         $res = Game::createGame($game);
 
         header("Location: /binball/game/".$res['id']."/".$game['user_id']);

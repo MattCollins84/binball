@@ -20,6 +20,8 @@
       
       $data = array();
       $data['jumbotron'] = true;
+      $data['homepage'] = true;
+      $data['insto'] = true;
       
       $h = $rest->getHierarchy();    
       $vars = $rest->getRequestVars();

@@ -3,7 +3,7 @@
   var binball;
   $(document).ready(function() {
 
-    binball = new BinBall("<?=$data['game_id'];?>", "<?=$data['user']['_id'];?>", "<?=$data['creator'];?>");
+    binball = new BinBall("<?=$data['game_id'];?>", "<?=$data['user']['_id'];?>", "<?=$data['creator'];?>", "<?=$data['user']['name']." ".$data['user']['surname'];?>");
 
   });
 

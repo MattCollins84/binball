@@ -1,4 +1,4 @@
-var BinBall = function(game_id, user_id, creator) {
+var BinBall = function(game_id, user_id, creator, host_name) {
 
   creator = (creator=="1"?true:false);
 
@@ -29,7 +29,9 @@ var BinBall = function(game_id, user_id, creator) {
   var userData = {
     game_id: game_id,
     user_id: user_id,
-    creator: creator
+    creator: creator,
+    host: (creator?"yes":"no"),
+    name: host_name
   }
 
   var userQuery = {
@@ -315,8 +317,8 @@ var BinBall = function(game_id, user_id, creator) {
     }
 
     else if (typeof this.scores[player_id][r] == "undefined" && this.scores[player_id].length < r) {
-      alert("You cannot alter this score yet");
-      $('select#scorer'+round_id+'p'+player_id).val("")
+      $('select#scorer'+round_id+'p'+player_id).val("");
+      return alert("You cannot alter this score yet");
     }
 
     else {
