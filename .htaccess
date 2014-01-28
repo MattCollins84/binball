@@ -3,12 +3,9 @@ RewriteBase /
 
 Options -Indexes
 
-Options +FollowSymLinks
-
-RewriteEngine On 
-
-RewriteCond %{HTTP_HOST} ^www.binball\.org$
-RewriteRule ^(.*) http://binball.org [R=301]
+# Catch old school URL's
+RewriteRule ^login.php$ /login [R=301,QSA,L]
+RewriteRule ^reset.php$ /reset [R=301,QSA,L]
 
 # Redirect to controllers
 RewriteCond %{REQUEST_FILENAME} !-f
