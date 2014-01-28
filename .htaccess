@@ -8,7 +8,7 @@ Options +FollowSymLinks
 RewriteEngine On 
 
 RewriteCond %{HTTP_HOST} ^www.binball\.org$
-RewriteRule ^(.*) http://binball.org/$1 [R=301]
+RewriteRule ^(.*) http://binball.org [R=301]
 
 # Redirect to controllers
 RewriteCond %{REQUEST_FILENAME} !-f
