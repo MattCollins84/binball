@@ -57,8 +57,11 @@ var BinBall = function(game_id, user_id, creator, host_name) {
     // when a new user connects
     onUserConnect: function(data) {
 
-      parent.spectators++;
-      return sync();
+      if (creator) {
+        parent.spectators++;
+        return sync();
+      }
+
       //return pushSync(data._id);
 
     },
@@ -66,8 +69,10 @@ var BinBall = function(game_id, user_id, creator, host_name) {
     // when a user disconnects
     onUserDisconnect: function(data) {
 
-      parent.spectators--;
-      return sync();
+      if (creator) {
+        parent.spectators--;
+        return sync();
+      }
 
     },
 
