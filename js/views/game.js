@@ -244,6 +244,12 @@ var GameViews = function() {
         // make user round fail %
         $('#fail-'+game.currentRound+'-player-'+game.currentPlayer+'-pc').removeClass("hidden");
 
+      },
+
+      spectators: function(game) {
+
+        $('#spectators').text(game.spectators);
+
       }
 
     }

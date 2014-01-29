@@ -16,7 +16,11 @@
 
   <div class="row mb20">
     
-    <div class="col-md-12">
+    <div class="col-md-6">
+      <h1><span class="label label-warning" id="spectators">0</span> Spectators</h1>
+    </div>
+
+    <div class="col-md-6">
       <a class="btn btn-success mb10 pull-right hidden" id='share-btn' onclick="binball.share(this);" href='#'><i class="fa fa-share white"> </i> Share this game</a>
       <div class="input-group block100" id='share'>
         <input type="text" id="shareurl" class="form-control hidden" value="http://<?=$_SERVER['HTTP_HOST'].str_replace($data['creator_id'], "share", $_SERVER['REDIRECT_URL']);?>" />

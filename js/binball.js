@@ -21,6 +21,7 @@ var BinBall = function(game_id, user_id, creator, host_name) {
   this.gameStarted = false;
   this.stats = null;
   this.creator = creator;
+  this.spectators = 0;
 
   // reference to the parent object
   var parent = this;
@@ -49,17 +50,24 @@ var BinBall = function(game_id, user_id, creator, host_name) {
     // parse eisting connected users
     onConnectedUsers: function(data) { 
 
+      parent.spectators = data.users.length;
+
     },
 
     // when a new user connects
     onUserConnect: function(data) {
 
-      return pushSync(data._id);
+      parent.spectators++;
+      return sync();
+      //return pushSync(data._id);
 
     },
 
     // when a user disconnects
     onUserDisconnect: function(data) {
+
+      parent.spectators--;
+      return sync();
 
     },
 
@@ -137,6 +145,9 @@ var BinBall = function(game_id, user_id, creator, host_name) {
 
     // render the players list
     views.players.renderPlayerList(parent.players);
+
+    // spectators
+    views.game.spectators(parent);
 
     if (parent.gameStarted) {
 
