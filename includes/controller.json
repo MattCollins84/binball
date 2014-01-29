@@ -19,6 +19,12 @@
         "authentication": false 
     },
     {
+        "regex": "^/history$",
+        "controllerClass": "MainController",
+        "method": "renderHistory",
+        "authentication": false 
+    },
+    {
         "regex": "^/binball/play/?$",
         "controllerClass": "BinBallController",
         "method": "playBinball",

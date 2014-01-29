@@ -124,6 +124,7 @@
             <li><a href="/"><b>Home</b></a></li>
             <li><a href="/rules"><b>Rules</b></a></li>
             <li><a href="/guide"><b>Guide</b></a></li>
+            <li><a href="/history"><b>History</b></a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

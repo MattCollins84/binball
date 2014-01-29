@@ -55,6 +55,18 @@
     }
 
     // Render the rules
+    static public function renderHistory($rest) {
+      
+      $data = array();
+      
+      $h = $rest->getHierarchy();    
+      $vars = $rest->getRequestVars();
+
+      echo View::renderView("history", $data);
+          
+    }
+
+    // Render the rules
     static public function renderProfile($rest) {
       
       $data = array();

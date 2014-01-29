@@ -17,7 +17,6 @@
   </div>
 </div>
 
-
 <div class="container hidden" id="livegames">
   
   <div class="row">
